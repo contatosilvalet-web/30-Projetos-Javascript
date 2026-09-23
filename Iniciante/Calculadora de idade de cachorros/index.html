@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de Idade Canina</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Calculadora de Idade Canina</h1>
+    
+    <label for="idadeCanina">Digite aqui a idade do seu cão (em anos):</label>
+    <input type="number" id="idadeCanina" placeholder="Ex: 3" min="1" max="30">
+
+    <button onclick="calcularIdade()">Calcular Idade Humana</button>
+
+    <div id="resultado" class="resultado"></div>
+  </div>
+
+  <script src="index.js"></script>
+</body>
+</html>

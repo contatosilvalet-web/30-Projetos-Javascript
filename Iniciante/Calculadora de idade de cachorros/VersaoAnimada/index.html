@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Idade Canina</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="min-h-screen flex items-center justify-center p-4 md:p-6 text-slate-800">
+
+    <div class="w-full max-w-4xl grid grid-cols-1 md:grid-cols-12 gap-6 items-stretch">
+
+        <!-- Mascot Card -->
+        <div class="md:col-span-5 glass-card rounded-3xl p-6 flex flex-col justify-between items-center text-center custom-shadow relative overflow-hidden">
+
+            <div class="w-full">
+                <span id="lifeStageBadge" class="inline-block px-4 py-1.5 rounded-full text-xs font-bold tracking-wide uppercase bg-amber-100 text-amber-800 border border-amber-300 transition-all duration-300">
+                    🍼 Filhotinho
+                </span>
+                <h2 id="petGreeting" class="font-fredoka text-2xl font-bold text-amber-950 mt-2 transition-all">
+                    Au au! Sou um bebê! 🐾
+                </h2>
+                <p id="petSpeech" class="text-xs text-amber-900/80 mt-1 h-10 flex items-center justify-center italic px-2 transition-all">
+                    "Tudo é novo e adorável pra mim! Adoro brincar e morder sapatos."
+                </p>
+            </div>
+
+            <!-- SVG Dog Interactive Mascot -->
+            <div class="relative my-4 cursor-pointer group" id="dogMascotContainer" title="Clique para me fazer latir!">
+
+                <div id="barkBubble" class="absolute -top-8 right-2 bg-amber-500 text-white font-fredoka font-bold text-xs px-3 py-1.5 rounded-2xl opacity-0 transform scale-75 transition-all duration-200 pointer-events-none shadow-md z-20">
+                    AU AU! 🐾
+                </div>
+
+                <svg id="dogSvg" class="w-52 h-52 md:w-60 md:h-60 transition-all duration-300 float-animation" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path id="dogTail" class="animate-tail-fast" d="M145 155 C165 150 175 130 170 110 C168 102 160 100 156 108 C152 120 150 135 140 148 Z" fill="#C2410C" />
+
+                    <!-- Paws -->
+                    <ellipse cx="65" cy="165" rx="16" ry="12" fill="#9A3412"/>
+                    <ellipse cx="135" cy="165" rx="16" ry="12" fill="#9A3412"/>
+
+                    <!-- Body -->
+                    <path d="M55 120 C55 90 145 90 145 120 C145 155 135 170 100 170 C65 170 55 155 55 120 Z" fill="#EA580C"/>
+                    <ellipse cx="100" cy="138" rx="28" ry="24" fill="#FFEDD5"/>
+
+                    <!-- Legs -->
+                    <rect x="75" y="130" width="16" height="38" rx="8" fill="#FFEDD5"/>
+                    <rect x="109" y="130" width="16" height="38" rx="8" fill="#FFEDD5"/>
+
+                    <!-- Ears -->
+                    <g id="earLeft" class="animate-ear">
+                        <path d="M55 70 C40 50 20 80 35 105 C45 120 60 100 58 78 Z" fill="#9A3412"/>
+                    </g>
+                    <g id="earRight" class="animate-ear">
+                        <path d="M145 70 C160 50 180 80 165 105 C155 120 140 100 142 78 Z" fill="#9A3412"/>
+                    </g>
+
+                    <!-- Head -->
+                    <circle cx="100" cy="85" r="42" fill="#EA580C"/>
+                    <ellipse cx="100" cy="94" rx="22" ry="16" fill="#FFEDD5"/>
+                    <path d="M93 86 C93 83 107 83 107 86 C107 91 102 95 100 95 C98 95 93 91 93 86 Z" fill="#431407"/>
+
+                    <!-- Dynamic Tongue -->
+                    <path id="dogTongue" d="M96 98 C96 98 100 110 104 98 Z" fill="#F43F5E" class="transition-all duration-300"/>
+
+                    <!-- Dynamic Eyes -->
+                    <g id="eyePuppy" class="transition-opacity duration-300">
+                        <circle cx="83" cy="78" r="7" fill="#431407"/>
+                        <circle cx="81" cy="75" r="3" fill="white"/>
+                        <circle cx="117" cy="78" r="7" fill="#431407"/>
+                        <circle cx="115" cy="75" r="3" fill="white"/>
+                    </g>
+
+                    <g id="eyeAdult" class="opacity-0 transition-opacity duration-300">
+                        <circle cx="83" cy="78" r="6" fill="#431407"/>
+                        <circle cx="81" cy="76" r="2" fill="white"/>
+                        <circle cx="117" cy="78" r="6" fill="#431407"/>
+                        <circle cx="115" cy="76" r="2" fill="white"/>
+                    </g>
+
+                    <g id="eyeSenior" class="opacity-0 transition-opacity duration-300">
+                        <path d="M77 79 Q83 74 89 79" stroke="#431407" stroke-width="3" stroke-linecap="round"/>
+                        <path d="M111 79 Q117 74 123 79" stroke="#431407" stroke-width="3" stroke-linecap="round"/>
+                    </g>
+
+                    <!-- Eyebrows -->
+                    <path d="M77 68 Q83 65 89 69" stroke="#9A3412" stroke-width="3" stroke-linecap="round"/>
+                    <path d="M111 69 Q117 65 123 68" stroke="#9A3412" stroke-width="3" stroke-linecap="round"/>
+
+                    <!-- Glasses for Senior -->
+                    <g id="seniorGlasses" class="opacity-0 transition-opacity duration-300">
+                        <circle cx="83" cy="78" r="11" stroke="#D97706" stroke-width="3" fill="none"/>
+                        <circle cx="117" cy="78" r="11" stroke="#D97706" stroke-width="3" fill="none"/>
+                        <line x1="94" y1="78" x2="106" y2="78" stroke="#D97706" stroke-width="3"/>
+                    </g>
+
+                    <!-- Bow for Puppy -->
+                    <g id="puppyBow" class="transition-opacity duration-300">
+                        <polygon points="100,120 90,113 90,127" fill="#3B82F6"/>
+                        <polygon points="100,120 110,113 110,127" fill="#3B82F6"/>
+                        <circle cx="100" cy="120" r="3" fill="#1D4ED8"/>
+                    </g>
+                </svg>
+            </div>
+
+            <p class="text-xs text-amber-700/70 font-medium">
+                ✨ <span class="underline">Clique no cãozinho</span> para ouvir um latido!
+            </p>
+        </div>
+
+        <div class="md:col-span-7 glass-card rounded-3xl p-6 md:p-8 flex flex-col justify-between custom-shadow">
+            <div>
+                <div class="border-b border-orange-100 pb-4 mb-6 flex items-center justify-between">
+                    <div>
+                        <h1 class="font-fredoka text-2xl md:text-3xl font-bold text-orange-950">Calculadora Canina</h1>
+                        <p class="text-xs md:text-sm text-slate-600">Descubra a idade real em anos humanos</p>
+                    </div>
+                    <div class="bg-orange-500 text-white w-10 h-10 rounded-2xl flex items-center justify-center font-bold shadow-md">
+                        <i class="fa-solid fa-calculator text-lg"></i>
+                    </div>
+                </div>
+
+                <form id="calcForm" onsubmit="return false;" class="space-y-5">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
+                            1. Porte do Cachorro
+                        </label>
+                        <div class="grid grid-cols-3 gap-2 md:gap-3">
+                            <div>
+                                <input type="radio" id="sizeSmall" name="dogSize" value="small" class="hidden size-radio" checked>
+                                <label for="sizeSmall" class="flex flex-col items-center justify-center p-3 text-xs md:text-sm font-semibold text-slate-600 bg-slate-50 border-2 border-slate-200 rounded-2xl cursor-pointer hover:bg-orange-50 transition-all">
+                                    <i class="fa-solid fa-dog text-base mb-1 text-orange-400"></i>
+                                    <span>Pequeno</span>
+                                    <span class="text-[10px] text-slate-400 font-normal">Até 10kg</span>
+                                </label>
+                            </div>
+                            <div>
+                                <input type="radio" id="sizeMedium" name="dogSize" value="medium" class="hidden size-radio">
+                                <label for="sizeMedium" class="flex flex-col items-center justify-center p-3 text-xs md:text-sm font-semibold text-slate-600 bg-slate-50 border-2 border-slate-200 rounded-2xl cursor-pointer hover:bg-orange-50 transition-all">
+                                    <i class="fa-solid fa-dog text-lg mb-1 text-orange-500"></i>
+                                    <span>Médio</span>
+                                    <span class="text-[10px] text-slate-400 font-normal">11kg a 25kg</span>
+                                </label>
+                            </div>
+                            <div>
+                                <input type="radio" id="sizeLarge" name="dogSize" value="large" class="hidden size-radio">
+                                <label for="sizeLarge" class="flex flex-col items-center justify-center p-3 text-xs md:text-sm font-semibold text-slate-600 bg-slate-50 border-2 border-slate-200 rounded-2xl cursor-pointer hover:bg-orange-50 transition-all">
+                                    <i class="fa-solid fa-dog text-xl mb-1 text-orange-600"></i>
+                                    <span>Grande</span>
+                                    <span class="text-[10px] text-slate-400 font-normal">+ de 25kg</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label for="yearsInput" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
+                                2. Anos
+                            </label>
+                            <div class="relative">
+                                <input type="number" id="yearsInput" min="0" max="25" value="0" class="w-full bg-slate-50 border-2 border-slate-200 focus:border-orange-500 focus:bg-white text-slate-800 text-lg font-bold rounded-2xl px-4 py-2.5 outline-none transition-all">
+                                <span class="absolute right-4 top-3 text-xs font-semibold text-slate-400 pointer-events-none">Anos</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="monthsInput" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
+                                Meses
+                            </label>
+                            <div class="relative">
+                                <input type="number" id="monthsInput" min="0" max="11" value="6" class="w-full bg-slate-50 border-2 border-slate-200 focus:border-orange-500 focus:bg-white text-slate-800 text-lg font-bold rounded-2xl px-4 py-2.5 outline-none transition-all">
+                                <span class="absolute right-4 top-3 text-xs font-semibold text-slate-400 pointer-events-none">Meses</span>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="mt-6 pt-5 border-t border-orange-100">
+                <div class="bg-gradient-to-br from-orange-500 to-amber-600 rounded-3xl p-5 text-white shadow-lg relative overflow-hidden">
+                    <i class="fa-solid fa-bone absolute -right-4 -bottom-4 text-7xl opacity-15 transform -rotate-45"></i>
+
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="text-xs uppercase font-bold tracking-wider text-orange-200">Equivalência Humana</span>
+                        <span id="stageTag" class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-white/20 backdrop-blur-md">
+                            Filhote
+                        </span>
+                    </div>
+
+                    <div class="flex items-baseline space-x-2 my-1">
+                        <span id="humanAgeCounter" class="font-fredoka text-5xl md:text-6xl font-bold tracking-tight">
+                            8
+                        </span>
+                        <span class="font-fredoka text-2xl font-semibold text-orange-100">Anos Humanos</span>
+                    </div>
+
+                    <p id="explanationText" class="text-xs md:text-sm text-orange-100 leading-relaxed mt-2 font-medium">
+                        Carregando...
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>
